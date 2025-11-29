@@ -41,19 +41,7 @@ class UserService {
       throw error;
     }
   }
-  async activate(activationLink) {
-    try {
-      const user = await userModel.findOne({ activationLink });
-      if (!user) {
-        throw ApiError.BadRequest("Некорректная ссылка активации");
-      }
-      user.isActivated = true;
-      await user.save();
-    } catch (error) {
-      console.error("Ошибка активации пользователя:", error);
-      throw error;
-    }
-  }
+
   async login(email, password) {
     const user = await userModel.findOne({ email });
     if (!user)
